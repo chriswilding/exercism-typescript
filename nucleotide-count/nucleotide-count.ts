@@ -1,18 +1,21 @@
+interface Count {
+  [index: string]: number
+  A: number
+  C: number
+  G: number
+  T: number
+}
+
 class NucleotideCount {
-  static nucleotideCounts(strand: string) {
-
-    const nucleotides = new Map([['A', 0], ['C', 0], ['G', 0], ['T', 0]])
-
+  static nucleotideCounts(strand: string): Count {
+    const nucleotides: Count = { A: 0, C: 0, G: 0, T: 0 }
     for (const nucleotide of strand) {
-      if (nucleotides.has(nucleotide)) {
-        const count = nucleotides.get(nucleotide) || 0
-        nucleotides.set(nucleotide, count + 1)
-      } else {
+      if (nucleotides[nucleotide] === undefined) {
         throw new Error('Invalid nucleotide in strand')
       }
+      nucleotides[nucleotide]++
     }
-
-    return Object.fromEntries(nucleotides)
+    return nucleotides
   }
 }
 
