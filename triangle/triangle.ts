@@ -6,11 +6,10 @@ export default class Triangle {
   }
 
   kind() {
-    if (this.sides.some(side => side === 0)) throw new Error('invalid triange')
-    const [a, b, c] = this.sides
-    if (a + b < c || b + c < a || c + a < b) throw new Error('invalid triange')
-    if (a === b && b === c && c === a) return 'equilateral'
-    if (a === b || b === c || c === a) return 'isosceles'
+    const [a, b, c] = this.sides.sort((a, b) => a - b)
+    if (a <= 0 || (a + b <= c)) throw new Error('invalid triange')
+    if (a === c) return 'equilateral'
+    if (a === b || b === c) return 'isosceles'
     return 'scalene'
   }
 }
