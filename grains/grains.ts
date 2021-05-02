@@ -6,6 +6,6 @@ export default class Grains {
     }
 
     public static total(): number {
-        return 18446744073709551615
+        return Math.pow(2, 64)
     }
 }
